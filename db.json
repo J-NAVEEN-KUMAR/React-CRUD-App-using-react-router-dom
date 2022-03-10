@@ -230,5 +230,12 @@
         "bs": "target end-to-end models"
       }
     }
-  ]
+  ],
+  "profile": {
+    "id": 1,
+    "name": "",
+    "email": "",
+    "phone": "",
+    "website": ""
+  }
 }

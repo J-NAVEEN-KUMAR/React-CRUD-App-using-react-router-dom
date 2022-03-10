@@ -17,7 +17,7 @@ function App() {
         <Route path="/createuser" element={<CreateUserPage />} />
         <Route path="/edituser/:id" element={<EditUserPage />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/editprofile/:id" element={<EditProfile />} />
+        <Route path="/editprofile" element={<EditProfile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
