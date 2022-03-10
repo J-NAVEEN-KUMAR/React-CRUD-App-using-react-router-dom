@@ -1,25 +1,29 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./createUserPage.scss";
 
 const CreateUserPage = () => {
+  let Navigate = useNavigate();
   const [values, setValues] = useState({
     name: "",
     email: "",
   });
-  const handleSubmit = (e) => {
+  const { name, email } = values;
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+    const res = await axios.post("http://localhost:3003/users", values);
+    console.log(res.data);
+    Navigate("/");
   };
-  const handleChangeName = (e) => {
-    setValues({ ...values, name: e.target.value });
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
-  const handleChangeEmail = (e) => {
-    setValues({ ...values, email: e.target.value });
-  };
+
   return (
     <div>
       <h1>Enter the details and submit to add user</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="item">
           <label htmlFor="name">Full Name: </label>
           <input
@@ -27,8 +31,9 @@ const CreateUserPage = () => {
             id="name"
             placeholder="Enter your Name"
             required
-            value={values.name}
-            onChange={handleChangeName}
+            name="name"
+            value={name}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="item">
@@ -38,8 +43,9 @@ const CreateUserPage = () => {
             id="email"
             placeholder="Enter your Email"
             required
-            value={values.email}
-            onChange={handleChangeEmail}
+            name="email"
+            value={email}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <button type="submit">Submit</button>

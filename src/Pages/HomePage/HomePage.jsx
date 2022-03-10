@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./homePage.scss";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,24 +8,25 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function createData(id, name, email) {
   return { id, name, email };
 }
 
-// const rows = [
-//   createData(1, "Naveen", "naveen@gmail.com"),
-//   createData(2, "nj", "nj@gmail.com"),
-// ];
-
 const HomePage = () => {
-  const [rows, setRows] = useState([
-    createData(1, "Naveen", "naveen@gmail.com"),
-    createData(2, "nj", "nj@gmail.com"),
-  ]);
-  const handleDelete = (id) => {
-    const removeArr = [...rows].filter((item) => item.id !== id);
-    setRows(removeArr);
+  const [rows, setRows] = useState([]);
+  const handleDelete = async (id) => {
+    await axios.delete(`http://localhost:3003/users/${id}`);
+    loadUsers();
+  };
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
+  const loadUsers = async () => {
+    const res = await axios.get("http://localhost:3003/users");
+    setRows(res.data);
   };
   return (
     <div>
@@ -62,7 +63,7 @@ const HomePage = () => {
                 <TableCell align="center">{row.email}</TableCell>
                 <TableCell>
                   <button type="submit">
-                    <Link to={"edituser/:"+row.id}>Edit</Link>
+                    <Link to={"edituser/" + row.id}>Edit</Link>
                   </button>
                 </TableCell>
                 <TableCell>

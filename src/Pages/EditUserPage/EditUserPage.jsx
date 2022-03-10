@@ -1,25 +1,37 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./editUserPage.scss";
 
 const EditUserPage = () => {
+  let Navigate = useNavigate();
+  const { id } = useParams();
   const [values, setValues] = useState({
     name: "",
     email: "",
   });
-  const handleSubmit = (e) => {
+  const { name, email } = values;
+  useEffect(() => {
+    loadUsers();
+  }, []);
+  const loadUsers = async () => {
+    const res = await axios.get(`http://localhost:3003/users/${id}`);
+    setValues(res.data);
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+    const res = await axios.put(`http://localhost:3003/users/${id}`, values);
+    console.log(res.data);
+    Navigate("/");
   };
-  const handleChangeName = (e) => {
-    setValues({ ...values, name: e.target.value });
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
-  const handleChangeEmail = (e) => {
-    setValues({ ...values, email: e.target.value });
-  };
+
   return (
     <div>
       <h1>Enter the details and submit to update user</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="item">
           <label htmlFor="name">Full Name: </label>
           <input
@@ -27,8 +39,9 @@ const EditUserPage = () => {
             id="name"
             placeholder="Enter your Name"
             required
-            value={values.name}
-            onChange={handleChangeName}
+            name="name"
+            value={name}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="item">
@@ -38,8 +51,9 @@ const EditUserPage = () => {
             id="email"
             placeholder="Enter your Email"
             required
-            value={values.email}
-            onChange={handleChangeEmail}
+            name="email"
+            value={email}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <button type="submit">Update</button>

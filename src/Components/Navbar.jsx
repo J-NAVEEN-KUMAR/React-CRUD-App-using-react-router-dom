@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const pages = [
   { id: 1, name: "All-Users", link: "/" },
@@ -84,7 +84,9 @@ const Navbar = () => {
               {pages.map((page) => (
                 <MenuItem key={page.id} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <NavLink exact to={page.link}>{page.name}</NavLink>
+                    <NavLink exact to={page.link}>
+                      {page.name}
+                    </NavLink>
                   </Typography>
                 </MenuItem>
               ))}
@@ -96,7 +98,9 @@ const Navbar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            <NavLink exact to="/">NJ-CRUD</NavLink>
+            <NavLink exact to="/">
+              NJ-CRUD
+            </NavLink>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -105,7 +109,9 @@ const Navbar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <NavLink exact to={page.link}>{page.name}</NavLink>
+                <NavLink exact to={page.link}>
+                  {page.name}
+                </NavLink>
               </Button>
             ))}
           </Box>
@@ -134,7 +140,9 @@ const Navbar = () => {
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
-                    <NavLink exact to={setting.link}>{setting.name}</NavLink>
+                    <NavLink exact to={setting.link}>
+                      {setting.name}
+                    </NavLink>
                   </Typography>
                 </MenuItem>
               ))}
