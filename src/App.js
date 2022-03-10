@@ -6,6 +6,7 @@ import EditUserPage from "./Pages/EditUserPage/EditUserPage";
 import Navbar from "./Components/Navbar";
 import Profile from "./Pages/Profile/Profile";
 import EditProfile from "./Pages/EditProfile/EditProfile";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/edituser/:id" element={<EditUserPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/editprofile/:id" element={<EditProfile />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
