@@ -14,6 +14,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./navbar.scss";
 
 const pages = [
   { id: 1, name: "All-Users", link: "/" },
@@ -41,7 +42,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="navbar-container">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -50,7 +51,9 @@ const Navbar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            NJ-CRUD
+            <NavLink exact to="/" className="logo">
+              NJ-CRUD
+            </NavLink>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -84,7 +87,11 @@ const Navbar = () => {
               {pages.map((page) => (
                 <MenuItem key={page.id} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <NavLink exact to={page.link}>
+                    <NavLink
+                      exact
+                      to={page.link}
+                      style={{ color: "#88c8eb", textDecoration: "none" }}
+                    >
                       {page.name}
                     </NavLink>
                   </Typography>
@@ -98,7 +105,7 @@ const Navbar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            <NavLink exact to="/">
+            <NavLink exact to="/" className="logo">
               NJ-CRUD
             </NavLink>
           </Typography>
@@ -109,7 +116,7 @@ const Navbar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <NavLink exact to={page.link}>
+                <NavLink exact to={page.link} className="routeName">
                   {page.name}
                 </NavLink>
               </Button>
@@ -118,7 +125,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open Profile">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="profile" src="" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -138,9 +145,17 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem
+                  key={setting}
+                  onClick={handleCloseUserMenu}
+                  className="routeName"
+                >
                   <Typography textAlign="center">
-                    <NavLink exact to={setting.link}>
+                    <NavLink
+                      exact
+                      to={setting.link}
+                      style={{ color: "#88c8eb", textDecoration: "none" }}
+                    >
                       {setting.name}
                     </NavLink>
                   </Typography>

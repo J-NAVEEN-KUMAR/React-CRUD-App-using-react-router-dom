@@ -31,7 +31,11 @@ const HomePage = () => {
   return (
     <div>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table
+          sx={{ minWidth: 650 }}
+          aria-label="simple table"
+          className="table-container"
+        >
           <TableHead>
             <TableRow>
               <TableCell align="center">

@@ -10,17 +10,19 @@ import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/createuser" element={<CreateUserPage />} />
-        <Route path="/edituser/:id" element={<EditUserPage />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/editprofile" element={<EditProfile />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <div>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/createuser" element={<CreateUserPage />} />
+          <Route path="/edituser/:id" element={<EditUserPage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/editprofile" element={<EditProfile />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
