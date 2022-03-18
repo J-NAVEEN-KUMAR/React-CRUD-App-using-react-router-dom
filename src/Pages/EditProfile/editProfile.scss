@@ -1,0 +1,29 @@
+.edit-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+
+  .create-form {
+    width: 50vw;
+    height: 50vh;
+    background-color: #002f3d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .item {
+      margin: 10px;
+
+      input {
+        background-color: inherit;
+        border: none;
+        border-bottom: 2px solid white;
+      }
+    }
+  }
+  
+}

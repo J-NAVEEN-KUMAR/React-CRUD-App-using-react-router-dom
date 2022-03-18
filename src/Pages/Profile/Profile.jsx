@@ -28,7 +28,7 @@ const Profile = () => {
   };
   return (
     <div>
-      <Card sx={{ minWidth: 275 }}>
+      <Card sx={{ minWidth: 275 }} className="card-container">
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -52,8 +52,8 @@ const Profile = () => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">
-            <Link to={"/editprofile"}>Update Profile</Link>
+          <Button size="small" color="success">
+            <Link to={"/editprofile"} className="profile-btn">Update Profile</Link>
           </Button>
         </CardActions>
       </Card>

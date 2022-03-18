@@ -7,6 +7,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -30,24 +33,27 @@ const HomePage = () => {
   };
   return (
     <div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} >
         <Table
           sx={{ minWidth: 650 }}
           aria-label="simple table"
           className="table-container"
         >
           <TableHead>
-            <TableRow>
-              <TableCell align="center">
+            <TableRow >
+              <TableCell align="center" className="tableCell">
                 <strong>S.No</strong>
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="center" className="tableCell">
                 <strong> Name of the User</strong>
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="center" className="tableCell">
                 <strong> User EmailId</strong>
               </TableCell>
-              <TableCell align="center">
+              <TableCell align="left" className="tableCell">
+                {/* <strong>Actions</strong> */}
+              </TableCell>
+              <TableCell align="left" className="tableCell">
                 <strong>Actions</strong>
               </TableCell>
             </TableRow>
@@ -58,22 +64,34 @@ const HomePage = () => {
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row" align="center">
+                <TableCell component="th" scope="row" align="center" className="tableCell">
                   {row.id}
                 </TableCell>
-                <TableCell component="th" scope="row" align="center">
+                <TableCell component="th" scope="row" align="center" className="tableCell">
                   {row.name}
                 </TableCell>
-                <TableCell align="center">{row.email}</TableCell>
+                <TableCell align="center" className="tableCell">{row.email} </TableCell >
                 <TableCell>
-                  <button type="submit">
-                    <Link to={"edituser/" + row.id}>Edit</Link>
-                  </button>
+                  <Button
+                    type="submit"
+                    variant="outlined"
+                    color="warning"
+                    startIcon={<EditTwoToneIcon />}
+                    className="action"
+                  >
+                    <Link to={"edituser/" + row.id} className="action">Edit</Link>
+                  </Button>
                 </TableCell>
                 <TableCell>
-                  <button type="submit" onClick={() => handleDelete(row.id)}>
+                  <Button
+                    type="submit"
+                    onClick={() => handleDelete(row.id)}
+                    startIcon={<DeleteIcon />}
+                    variant="outlined"
+                    color="error"
+                  >
                     Delete
-                  </button>
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

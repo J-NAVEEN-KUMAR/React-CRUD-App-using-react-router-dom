@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -30,9 +31,9 @@ const EditProfile = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   return (
-    <div>
+    <div className="edit-container">
       <h1>Enter the details and submit to update your profile</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className="create-form">
         <div className="item">
           <label htmlFor="name">Full Name: </label>
           <input
@@ -81,7 +82,7 @@ const EditProfile = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <button type="submit">Update</button>
+        <Button type="submit">Update</Button>
       </form>
     </div>
   );

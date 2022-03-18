@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -29,9 +30,9 @@ const EditUserPage = () => {
   };
 
   return (
-    <div>
+    <div className="editUser-container">
       <h1>Enter the details and submit to update user</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className="create-form">
         <div className="item">
           <label htmlFor="name">Full Name: </label>
           <input
@@ -56,7 +57,7 @@ const EditUserPage = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <button type="submit">Update</button>
+        <Button type="submit">Update</Button>
       </form>
     </div>
   );
